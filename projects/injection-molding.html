@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PLA Recycling Injection Molder | Sahil Aggarwal</title>
+  <meta name="description" content="Senior design team build of a benchtop pneumatic injection molding machine that turns PLA 3D-printing waste into molded parts, based on the open Buster Beagle 3D MK3 design (Stony Brook).">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="../favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+  <link rel="canonical" href="https://sahilaggarwal.dev/projects/injection-molding.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Sahil Aggarwal">
+  <meta property="og:title" content="PLA Recycling Injection Molder | Sahil Aggarwal">
+  <meta property="og:description" content="Senior design team build of a benchtop pneumatic injection molding machine that turns PLA 3D-printing waste into molded parts, based on the open Buster Beagle 3D MK3 design (Stony Brook).">
+  <meta property="og:url" content="https://sahilaggarwal.dev/projects/injection-molding.html">
+  <meta property="og:image" content="https://sahilaggarwal.dev/images/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="../index.html">Sahil Aggarwal<span class="cred">, EIT</span></a>
+    <nav><a href="../index.html#projects">Projects</a><a href="../index.html#contact">Contact</a></nav>
+  </div>
+</header>
+
+<main class="wrap project">
+  <a class="back" href="../index.html#projects">&larr; All projects</a>
+  <div class="eyebrow">Senior design &middot; Mechatronics &middot; Fabrication</div>
+  <h1>Desktop PLA Recycling Injection Molding Machine</h1>
+
+  <div class="attribution" role="note">
+    <b>Attribution:</b> This machine is <b>not an original design</b>. It is a student build that closely follows
+    the open DIY <b>Buster Beagle 3D MK3 pneumatic injection molding machine</b>, and it uses Buster Beagle 3D's
+    heating chamber, funnel, band heaters, mold sprue and mold template. Our team adapted, built, analyzed and tested
+    that approach for a university lab, and added safety features. Full credit for the underlying design goes to
+    <a href="https://www.busterbeagle3d.com" target="_blank" rel="noopener">Buster Beagle 3D</a>.
+  </div>
+
+  <p class="summary">
+    A team build for Stony Brook's Senior Design Lab and its engineering makerspace that turns PLA 3D-printing waste
+    into molded parts. We adapted the Buster Beagle 3D MK3 pneumatic design and added safety features, temperature
+    control and engineering analysis for a university lab.
+  </p>
+
+  <dl class="facts">
+    <div><dt>Course</dt><dd>MEC 440/441 Senior Design, Stony Brook (2025&ndash;2026)</dd></div>
+    <div><dt>Team</dt><dd>4 students, with a faculty advisor</dd></div>
+    <div><dt>My role</dt><dd>Production CAD lead, first two concepts, plate and clamping calculations</dd></div>
+    <div><dt>Status</dt><dd>Built and tested; produced a working molded part</dd></div>
+    <div><dt>Based on</dt><dd>Buster Beagle 3D MK3 (see attribution)</dd></div>
+    <div><dt>Tools</dt><dd>Fusion 360, SolidWorks, MATLAB, Excel</dd></div>
+  </dl>
+
+  <h2>The problem</h2>
+  <p>
+    3D printing produces a steady stream of waste: support material, failed prints and abandoned prototypes, mostly
+    PLA, which isn't easily recycled. We estimated that the Senior Design Lab and the makerspace generate about
+    <b>15 kg of it per year</b>. The goal was a user-friendly benchtop machine that turns shredded and pelletized PLA
+    waste back into useful molded parts, and that lets students see injection molding up close.
+  </p>
+
+  <h2>What we built</h2>
+  <ul>
+    <li><b>Vertical, pneumatic injection machine</b> on a 2020 aluminum extrusion frame, about 24 in tall, running on
+      a standard 120 V benchtop.</li>
+    <li><b>Heating:</b> a stainless steel MK3 chamber with two band heaters, a PID controller and a K-type
+      thermocouple, melting PLA pellets at about 220&nbsp;&deg;C.</li>
+    <li><b>Injection:</b> a 4 in bore, 12 in stroke pneumatic cylinder driven through a solenoid valve from an
+      external air compressor.</li>
+    <li><b>Mold retention:</b> a 4 in low-profile drill press vise (2,000 lb clamping force) holding a 3D-printed resin
+      mold, with an aluminum sprue protecting the mold from direct nozzle contact.</li>
+    <li><b>Spring-mounted chamber:</b> the heating chamber rides on linear rods with compression springs, so a
+      slightly misaligned mold or a ram hitting unmelted plastic doesn't shock the frame. Even 0.5 mm of mold
+      misalignment can cause flashing.</li>
+    <li><b>Safety:</b> a polycarbonate enclosure with a magnetic door interlock, an emergency stop that cuts power to
+      the heaters and solenoid, an insulated chamber and high-limit temperature control. We designed against OSHA
+      29 CFR 1910.212 and ANSI B11.0.</li>
+  </ul>
+
+  <h2>What's from Buster Beagle 3D and what's ours</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>From Buster Beagle 3D</th><th>Our team's work</th></tr></thead>
+      <tbody>
+        <tr><td>Overall architecture: vertical, pneumatic injection, band-heated chamber</td>
+            <td>Choosing a vertical pneumatic approach for our requirements, through a comparison of 8 concepts with Pugh matrices and a patent and market review</td></tr>
+        <tr><td>MK3 stainless steel heating chamber, funnel and band heaters</td>
+            <td>Mounting the chamber on spring-loaded linear rods</td></tr>
+        <tr><td>Aluminum mold sprue, and the template for our first mold</td>
+            <td>Aluminum extrusion frame, mounting plates, mold retention vise, polycarbonate enclosure with door interlock, emergency stop</td></tr>
+        <tr><td>Parts-kit approach and published BOMs</td>
+            <td>PID temperature control, electrical design and a 3D-printed controller enclosure</td></tr>
+        <tr><td></td><td>Engineering analysis: heat transfer, injection pressure, chamber hoop stress, pneumatic force, plate loads and mold clamping force</td></tr>
+        <tr><td></td><td>Machine-shop fabrication, assembly, testing and mold debugging</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>My contribution</h2>
+  <ul>
+    <li>Created the first two concept designs: a vertical machine with a pneumatic piston and heated chamber, and a
+      vertical machine with a band heater and hand crank. Both were later redesigned.</li>
+    <li>Assembled the final production CAD in Fusion 360, sourced and modeled its components, and produced the
+      component drawings.</li>
+    <li>Calculated the loads on the pneumatic piston mounting plates and the required mold clamping force.</li>
+    <li>Wrote the report's introduction chapter and researched two of the patents in our patent review.</li>
+  </ul>
+  <p>The heat-transfer, injection-pressure and hoop-stress analyses, the electrical schematics and the BOM were done by
+    teammates.</p>
+
+  <h2>Testing and results</h2>
+  <ul>
+    <li><b>Emergency stop:</b> at full operating temperature (220&nbsp;&deg;C), pressing the e-stop immediately cut
+      power to both heaters and the solenoid valve. The magnetic door interlock worked.</li>
+    <li><b>Heat-up:</b> with 30 g of PLA pellets, the chamber thermocouple reached 220&nbsp;&deg;C in about 8 minutes,
+      and the PLA was fully melted at about 10 minutes. We recommend a 15-minute total soak from a cold start.</li>
+    <li><b>First three mold runs failed:</b> the molten PLA never entered the cavity. The cause was trapped air with no
+      escape path, which created back pressure. A larger inlet gate and a vent hole at the base of the cavity fixed it,
+      with no changes to the machine.</li>
+    <li><b>First successful part:</b> a smooth, nearly fully filled, quarter-shaped part with minimal flash. About 15 g
+      of the 30 g shot went into the mold. The final design needs about 51.7 psi of injection pressure.</li>
+  </ul>
+
+  <h2>Limitations</h2>
+  <ul>
+    <li>The mold was printed in standard clear resin, because the high-temperature resin order wasn't enough to run the
+      printer. It deformed after the cycle, so it would last only a handful of shots.</li>
+    <li>We demonstrated a single-part proof of concept, not repeatable production.</li>
+  </ul>
+
+  <h2>What I learned</h2>
+  <ul>
+    <li>The full engineering process, from ideation to a working machine, including the calculations needed to make a
+      design real.</li>
+    <li>Production-level CAD in Fusion 360 and SolidWorks.</li>
+    <li>How a PID controller actually behaves in a real machine, beyond the coursework theory.</li>
+    <li>Injection molding as a process, and how mold details like venting and gating decide whether a part fills.</li>
+  </ul>
+
+  <h2>Next steps</h2>
+  <ul>
+    <li>Quick-release mold system</li>
+    <li>Visual fault indicator</li>
+    <li>High-temperature mold material</li>
+    <li>Automatic cycling</li>
+  </ul>
+  <!-- TODO (Sahil): add your team's own figures from the report (final CAD, spring-mounted chamber, finished machine,
+       time-temperature plot, first successful part). Never use Buster Beagle 3D's images. -->
+</main>
+
+<footer><div class="wrap">&copy; <span id="year"></span> Sahil Aggarwal</div></footer>
+<script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</body>
+</html>
