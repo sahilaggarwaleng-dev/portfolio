@@ -83,14 +83,16 @@ header.site nav a:hover { color: var(--text); text-decoration: none; }
 
 /* Experience summary (home) */
 .exp-summary { display: grid; gap: 4px; }
-.exp-row { display: grid; grid-template-columns: 1fr auto; gap: 24px; padding: 14px 0; border-bottom: 1px solid var(--line); }
+.exp-row { display: grid; grid-template-columns: 112px 1fr auto; gap: 20px; align-items: center; padding: 14px 0; border-bottom: 1px solid var(--line); }
+.exp-logo { width: 112px; height: 56px; object-fit: contain; border-radius: 8px; border: 1px solid var(--line); background: #fff; }
 .exp-row:last-child { border-bottom: 0; }
 .exp-row h3 { margin: 0 0 4px; font-size: 1.05rem; }
 .exp-row p { margin: 0; color: var(--body); font-size: 0.95rem; }
 .exp-row .meta { color: var(--muted); font-size: 0.9rem; white-space: nowrap; }
 @media (max-width: 560px) {
-  .exp-row { grid-template-columns: 1fr; gap: 2px; }
-  .exp-row .meta { order: -1; }
+  .exp-row { grid-template-columns: 88px 1fr; gap: 4px 14px; align-items: start; }
+  .exp-logo { width: 88px; height: 44px; grid-row: span 2; }
+  .exp-row .meta { grid-column: 2; grid-row: 1; }
 }
 .exp-full { border-top: 0; padding-top: 8px; }
 .job-card {
