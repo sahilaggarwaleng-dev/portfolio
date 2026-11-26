@@ -17,13 +17,18 @@ A personal engineering portfolio for Sahil Aggarwal, hosted at his own domain, h
 ```
 index.html                      home: intro, projects, skills, experience, contact
 style.css                       shared light theme styles (colors are CSS variables in :root)
-resume.pdf                      public resume (version WITHOUT phone number)
+Sahil-Aggarwal-Resume.pdf       public resume (version WITHOUT phone number)
 projects/pangolin-robot.html
 projects/f16-flight-control.html
 projects/crazyflie.html
 projects/ev-conversion.html
 images/headshot.jpg             home-page portrait
 images/<project>/               compressed figures per project
+images/cards/                   16:9 home-card thumbnails (640x360)
+images/og-image.jpg             1200x630 link-preview image
+favicon.svg, favicon-32.png, apple-touch-icon.png
+404.html                        served via "not_found_handling": "404-page" in wrangler.jsonc
+sitemap.xml, robots.txt         update sitemap when adding a page
 wrangler.jsonc, .assetsignore   deploy config
 ```
 Project pages load the stylesheet as `../style.css` and link home as `../index.html`. The home page links to `projects/<name>.html`.
@@ -32,6 +37,9 @@ Project pages load the stylesheet as `../style.css` and link home as `../index.h
 - Project pages live in `projects/` (fixed). Contact email, LinkedIn and resume are done. No GitHub link (Sahil's choice).
 - SeaBot and the cricket bowling machine were removed: they never left design ideation. Do not re-add them.
 - Job title is "Mechanical Engineer" (not Junior). FEA is intentionally NOT listed as a skill.
+- Skills stays ABOVE Projects on the home page (Sahil's explicit choice, overrides the upgrade guide).
+- No "looking for a role" line in the hero (Sahil removed it).
+- Hidden TODO comments only; never show empty headings or placeholder boxes on the live site.
 - Crazyflie stats use the event log numbers (230 s, 4 obstacles, 2/2 pads); Sahil confirmed, keep them.
 
 ## Content that still needs Sahil's input (leave TODO comments, never invent)
@@ -62,6 +70,11 @@ Project pages load the stylesheet as `../style.css` and link home as `../index.h
 6. Commit messages should be short and descriptive.
 7. Do not add tracking, analytics or third-party scripts without asking.
 8. Before publishing any employer-related content (EV conversion page), confirm with Sahil that he is cleared to share it.
+
+## Planning docs (kept outside the repo, Sahil has them)
+- portfolio-upgrade-guide.md: audit and upgrade plan. Done: SEO/OG/favicon/sitemap/robots/404, card images, print CSS, focus states, experience grouping, resume rename, last-updated line, EV page from resume facts.
+- injection-molding-project.md: MEC 440 senior design page. The Buster Beagle 3D attribution banner is mandatory at the top of that page and on its home card. Never claim original design. Needs the report PDF for figures.
+- f16-control-project.md: done; numbers verified against the final report.
 
 ## Suggested order of work
 1. Move the project pages into `projects/` and fix links. Verify, then push.

@@ -5,6 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Sahil Aggarwal | Mechanical Engineer</title>
   <meta name="description" content="Portfolio of Sahil Aggarwal, mechanical engineer working in robotics, mechatronics, CAD, EV systems and control systems.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="canonical" href="https://sahilaggarwal.dev/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Sahil Aggarwal">
+  <meta property="og:title" content="Sahil Aggarwal | Mechanical Engineer">
+  <meta property="og:description" content="Portfolio of Sahil Aggarwal, mechanical engineer working in robotics, mechatronics, CAD, EV systems and control systems.">
+  <meta property="og:url" content="https://sahilaggarwal.dev/">
+  <meta property="og:image" content="https://sahilaggarwal.dev/images/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -42,7 +55,7 @@
       </p>
       <div class="cta">
         <a class="btn primary" href="#projects">See my projects</a>
-        <a class="btn" href="resume.pdf">Download resume</a>
+        <a class="btn" href="Sahil-Aggarwal-Resume.pdf">Download resume</a>
       </div>
       </div>
       <img class="portrait" src="images/headshot.jpg" width="260" height="260" alt="Headshot of Sahil Aggarwal">
@@ -78,23 +91,26 @@
       <h2>Selected projects</h2>
       <div class="grid">
         <a class="card" href="projects/pangolin-robot.html">
+          <img class="card-img" src="images/cards/pangolin.jpg" width="640" height="360" loading="lazy" alt="Pangolin-inspired soft robot prototype with aluminum scales">
           <h3>Pangolin-Inspired Magnetic Soft Robot</h3>
           <p>Redesigned the scale geometry of an untethered magnetic soft robot for multi-axis bending, then built and tested it in silicone, NdFeB and aluminum.</p>
           <div class="tags"><span class="tag">Soft robotics</span><span class="tag">Smart materials</span><span class="tag">Fabrication</span><span class="tag">MATLAB</span></div>
         </a>
         <a class="card" href="projects/f16-flight-control.html">
+          <img class="card-img" src="images/cards/f16.jpg" width="640" height="360" loading="lazy" alt="Pitch angle tracking a sinusoidal reference">
           <h3>F-16 Longitudinal Flight Control</h3>
           <p>Full state-space control design for an unstable F-16 pitch model: LQR, observers, trajectory tracking, saturation and gust tests, and a Monte Carlo robustness study.</p>
           <div class="tags"><span class="tag">Controls</span><span class="tag">Observer design</span><span class="tag">Python</span><span class="tag">Robustness</span></div>
         </a>
         <a class="card" href="projects/crazyflie.html">
+          <img class="card-img" src="images/cards/crazyflie.jpg" width="640" height="360" loading="lazy" alt="Top-down flight map of the successful Crazyflie run">
           <h3>Crazyflie Autonomous Navigation</h3>
           <p>A Python state machine that flies a Crazyflie across an arena, sidesteps obstacles, finds and lands on a pad, then returns home and lands again.</p>
           <div class="tags"><span class="tag">Aerial robotics</span><span class="tag">Python</span><span class="tag">Sensing</span></div>
         </a>
         <a class="card" href="projects/ev-conversion.html">
           <h3>Ford E450 &amp; School Bus EV Conversions</h3>
-          <p>Hands-on engineering work converting commercial vehicles to electric drivetrains.</p>
+          <p>Harness drawings and CAD used across 15+ electric conversion builds, plus a sheet metal redesign that cut costs by $10K.</p>
           <div class="tags"><span class="tag">EV</span><span class="tag">Industry</span></div>
         </a>
       </div>
@@ -125,6 +141,14 @@
           <li>Onboarded and mentored about 10 incoming interns on SolidWorks and CAD workflows.</li>
         </ul>
       </div>
+      <h3 class="group">Programs and fellowships</h3>
+      <div class="job">
+        <h3>Cohort Member, Energy Terminal Emerging Leaders Program</h3>
+        <div class="meta">February 2024 &ndash; April 2024</div>
+        <ul>
+          <li>Modeled emissions scenarios using MIT En-ROADS as part of a global energy industry cohort.</li>
+        </ul>
+      </div>
       <div class="job">
         <h3>Sr. Clean Energy Tech Transfer Fellow, LIHTI</h3>
         <div class="meta">January 2023 &ndash; March 2024</div>
@@ -132,13 +156,6 @@
           <li>Conducted patent research and industry landscape analysis in green hydrogen production, engaging 50+ industry experts.</li>
           <li>Completed an NY I-Corps Lean Bootcamp, running 20 customer discovery interviews in three weeks and applying Lean Startup methods to proof-of-concept development for two patented technologies.</li>
           <li>Led recruitment and onboarding for the program's second cohort, selecting 4 trainees to advance to full Fellows, and presented proof-of-concept strategies to the CEBIP advisory board.</li>
-        </ul>
-      </div>
-      <div class="job">
-        <h3>Cohort Member, Energy Terminal Emerging Leaders Program</h3>
-        <div class="meta">February 2024 &ndash; April 2024</div>
-        <ul>
-          <li>Modeled emissions scenarios using MIT En-ROADS as part of a global energy industry cohort.</li>
         </ul>
       </div>
     </section>
@@ -172,7 +189,7 @@
 </main>
 
 <footer>
-  <div class="wrap">&copy; <span id="year"></span> Sahil Aggarwal</div>
+  <div class="wrap">&copy; <span id="year"></span> Sahil Aggarwal &middot; Last updated November 2026</div>
 </footer>
 
 <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
