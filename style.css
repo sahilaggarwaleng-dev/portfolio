@@ -176,6 +176,30 @@ footer { border-top: 1px solid var(--line); padding: 32px 0; color: var(--muted)
   .hero { padding: 48px 0 48px; }
 }
 
+/* Beyond the technical work */
+.proof { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); gap: 14px; }
+.proof a {
+  display: block; background: var(--panel); border: 1px solid var(--line); border-radius: 12px;
+  padding: 16px 18px; color: var(--text); transition: border-color 0.15s ease;
+}
+.proof a:hover { border-color: var(--accent); text-decoration: none; }
+.proof b { display: block; margin-bottom: 4px; }
+.proof span { color: var(--body); font-size: 0.93rem; }
+
+/* Timeline (believed / heard / changed) */
+.timeline { list-style: none; padding: 0; margin: 18px 0; counter-reset: step; }
+.timeline li {
+  position: relative; padding: 0 0 22px 46px; border-left: 2px solid var(--line); margin-left: 15px;
+}
+.timeline li:last-child { border-left-color: transparent; padding-bottom: 0; }
+.timeline li::before {
+  counter-increment: step; content: counter(step); position: absolute; left: -16px; top: -2px;
+  width: 30px; height: 30px; border-radius: 50%; background: var(--accent); color: #fff;
+  font-weight: 700; font-size: 0.9rem; display: grid; place-items: center;
+}
+.timeline b { display: block; color: var(--text); }
+.timeline span { color: var(--body); }
+
 /* Attribution */
 .attribution {
   border: 2px solid #c98a12; background: #fff7e6; color: #3d2a05; border-radius: 10px;

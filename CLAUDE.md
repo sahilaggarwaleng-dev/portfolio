@@ -23,6 +23,7 @@ projects/f16-flight-control.html
 projects/injection-molding.html
 projects/crazyflie.html
 projects/ev-conversion.html
+projects/icorps-customer-discovery.html
 images/headshot.jpg             home-page portrait
 images/<project>/               compressed figures per project
 images/cards/                   16:9 home-card thumbnails (640x360)
@@ -44,7 +45,7 @@ Project pages load the stylesheet as `../style.css` and link home as `../index.h
 - Crazyflie stats use the event log numbers (230 s, 4 obstacles, 2/2 pads); Sahil confirmed, keep them.
 
 ## Content that still needs Sahil's input (leave TODO comments, never invent)
-- Crazyflie page: video is a Google Drive link. Sahil has an MP4; waiting on an unlisted YouTube link or an MP4 under 25 MB uploaded to images/crazyflie/.
+- Crazyflie page: video is a Google Drive link. Sahil has an MP4 but will add it another time (unlisted YouTube link or MP4 under 25 MB in images/crazyflie/).
 - Analytics: deferred by Sahil. When he sends the Cloudflare Web Analytics snippet, add it to every page (index, projects/*, 404).
 - EV conversion page: check what he is allowed to share about employer work before adding details or photos.
 
@@ -61,6 +62,8 @@ Project pages load the stylesheet as `../style.css` and link home as `../index.h
 - **F-16 longitudinal flight control** (MEC 560 Advanced Control Systems, Prof. Amin Fakhari, May 2026): individual project. Source: final report PDF (MEC560FinalProject). Numbers on the page are verified against the final report: tracking error 0.3702 deg, robustness 4/28 eigen-stable and 2/28 sim-stable, saturated final theta 9.0567 deg, FL 2.89 deg vs LQR 16.44 deg peak.
 - **Desktop PLA recycling injection molding machine** (MEC 440/441 senior design, 2025-2026): team of four plus faculty advisor. DO NOT name teammates or the advisor (Sahil said no). Based on Buster Beagle 3D MK3; attribution banner and home-card tag are mandatory, never claim original design, never use Buster Beagle images. Confirmed by Sahil: 15 kg/year waste, 51.7 psi final injection pressure, 15 g into the mold. Unknown: who did pneumatic force calc (credit "the team"). Near-miss safety story: Sahil said do NOT include. The Buster Beagle vs ours table still needs Sahil's review. Figures added from the report (team photos/CAD only). Table checked against report text.
 - **Crazyflie autonomous navigation** (MEC 569, Stony Brook): team Sahil Aggarwal, Isaac Lalicic, Benny Wen. Python state machine (logandfly, sim_room, map_replay). Source: presentation deck. Sahil wrote the flight/mission code and a sensor test script; a teammate did logging and graphs.
+- **I-Corps customer discovery** (NY I-Corps Lean Bootcamp, Spring 2023, part of the LIHTI fellowship): team of three, Sahil was Co-Entrepreneurial Lead. 20 interviews in three weeks (resume). Do NOT name teammates, interviewees or companies. Do not quote the technology's performance claims. Pending from Sahil: his personal contributions and "what I learned about working with people"; whether the technology can be described publicly (currently described generically).
+- Home page has a "Beyond the technical work" section; each item links to its proof.
 - **Ford E450 and school bus EV conversions**: industry work at Unique Electric Solutions.
 
 ## Rules
