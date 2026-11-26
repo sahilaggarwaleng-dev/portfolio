@@ -44,7 +44,8 @@ Project pages load the stylesheet as `../style.css` and link home as `../index.h
 - Crazyflie stats use the event log numbers (230 s, 4 obstacles, 2/2 pads); Sahil confirmed, keep them.
 
 ## Content that still needs Sahil's input (leave TODO comments, never invent)
-- Crazyflie page: video is a Google Drive link; confirm it is shared publicly.
+- Crazyflie page: video is a Google Drive link. Sahil has an MP4; waiting on an unlisted YouTube link or an MP4 under 25 MB uploaded to images/crazyflie/.
+- Analytics: deferred by Sahil. When he sends the Cloudflare Web Analytics snippet, add it to every page (index, projects/*, 404).
 - EV conversion page: check what he is allowed to share about employer work before adding details or photos.
 
 ## Facts about Sahil (safe to use in site copy)
