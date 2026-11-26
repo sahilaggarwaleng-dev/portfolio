@@ -44,7 +44,6 @@ Project pages load the stylesheet as `../style.css` and link home as `../index.h
 - Crazyflie stats use the event log numbers (230 s, 4 obstacles, 2/2 pads); Sahil confirmed, keep them.
 
 ## Content that still needs Sahil's input (leave TODO comments, never invent)
-- Every project page has a "My contribution" TODO for his specific role.
 - Crazyflie page: video is a Google Drive link; confirm it is shared publicly.
 - EV conversion page: check what he is allowed to share about employer work before adding details or photos.
 
@@ -57,10 +56,10 @@ Project pages load the stylesheet as `../style.css` and link home as `../index.h
 - Looking for robotics and mechatronics roles.
 
 ### Projects
-- **Pangolin-inspired magnetic soft robot** (MEC 520 Smart Materials and Structures, Prof. Yao, May 2026): team of four (Sahil Aggarwal, Ishaan Jain, Omar Khan, Andrew Yancovitz). Kite-shaped scale redesign of Soon et al. 2023 for multi-axis bending. Source: Group 7 design report.
+- **Pangolin-inspired magnetic soft robot** (MEC 520 Smart Materials and Structures, Prof. Yao, May 2026): team of four (Sahil Aggarwal, Ishaan Jain, Omar Khan, Andrew Yancovitz). Kite-shaped scale redesign of Soon et al. 2023 for multi-axis bending. Source: Group 7 design report. Sahil wrote the report, did the calculations, helped with prototyping.
 - **F-16 longitudinal flight control** (MEC 560 Advanced Control Systems, Prof. Amin Fakhari, May 2026): individual project. Source: final report PDF (MEC560FinalProject). Numbers on the page are verified against the final report: tracking error 0.3702 deg, robustness 4/28 eigen-stable and 2/28 sim-stable, saturated final theta 9.0567 deg, FL 2.89 deg vs LQR 16.44 deg peak.
-- **Desktop PLA recycling injection molding machine** (MEC 440/441 senior design, 2025-2026): team of four plus faculty advisor. DO NOT name teammates or the advisor (Sahil said no). Based on Buster Beagle 3D MK3; attribution banner and home-card tag are mandatory, never claim original design, never use Buster Beagle images. Confirmed by Sahil: 15 kg/year waste, 51.7 psi final injection pressure, 15 g into the mold. Unknown: who did pneumatic force calc (credit "the team"). Near-miss safety story: Sahil said do NOT include. The Buster Beagle vs ours table still needs Sahil's review. Figures pending: needs the report PDF (Group 9, Progress Report 5).
-- **Crazyflie autonomous navigation** (MEC 569, Stony Brook): team Sahil Aggarwal, Isaac Lalicic, Benny Wen. Python state machine (logandfly, sim_room, map_replay). Source: presentation deck.
+- **Desktop PLA recycling injection molding machine** (MEC 440/441 senior design, 2025-2026): team of four plus faculty advisor. DO NOT name teammates or the advisor (Sahil said no). Based on Buster Beagle 3D MK3; attribution banner and home-card tag are mandatory, never claim original design, never use Buster Beagle images. Confirmed by Sahil: 15 kg/year waste, 51.7 psi final injection pressure, 15 g into the mold. Unknown: who did pneumatic force calc (credit "the team"). Near-miss safety story: Sahil said do NOT include. The Buster Beagle vs ours table still needs Sahil's review. Figures added from the report (team photos/CAD only). Table checked against report text.
+- **Crazyflie autonomous navigation** (MEC 569, Stony Brook): team Sahil Aggarwal, Isaac Lalicic, Benny Wen. Python state machine (logandfly, sim_room, map_replay). Source: presentation deck. Sahil wrote the flight/mission code and a sensor test script; a teammate did logging and graphs.
 - **Ford E450 and school bus EV conversions**: industry work at Unique Electric Solutions.
 
 ## Rules

@@ -56,6 +56,19 @@
     <div><dt>Tools</dt><dd>Fusion 360, SolidWorks, MATLAB, Excel</dd></div>
   </dl>
 
+  <div class="figs tall">
+    <figure class="photo">
+      <img src="../images/injection/final-front.jpg" width="720" height="960"
+           alt="Finished benchtop injection molding machine: aluminum extrusion frame with polycarbonate panels, pneumatic cylinder on top, heating chamber in the middle and a red vise at the base, next to an air compressor and emergency stop">
+      <figcaption>The final machine, with the air compressor and emergency stop beside it.</figcaption>
+    </figure>
+    <figure class="photo">
+      <img src="../images/injection/final-iso.jpg" width="600" height="800"
+           alt="Angled view of the final machine showing the PID controller on top, the enclosure panels and the mold vise">
+      <figcaption>Isometric view, with the PID temperature controller mounted on top.</figcaption>
+    </figure>
+  </div>
+
   <h2>The problem</h2>
   <p>
     3D printing produces a steady stream of waste: support material, failed prints and abandoned prototypes, mostly
@@ -81,6 +94,24 @@
       the heaters and solenoid, an insulated chamber and high-limit temperature control. We designed against OSHA
       29 CFR 1910.212 and ANSI B11.0.</li>
   </ul>
+
+  <div class="figs tall">
+    <figure>
+      <img src="../images/injection/cad-assembly.jpg" width="520" height="870" loading="lazy"
+           alt="Fusion 360 assembly of the machine: pneumatic cylinder on top of a tall extrusion frame, mounting plates, heating chamber and vise at the base">
+      <figcaption>The production CAD I assembled in Fusion 360.</figcaption>
+    </figure>
+    <figure>
+      <img src="../images/injection/cad-spring-mount.jpg" width="440" height="799" loading="lazy"
+           alt="CAD close-up of the heating chamber plate riding on two linear rods with compression springs beneath it">
+      <figcaption>Spring-mounted chamber plate on linear rods, so a misaligned mold or unmelted plastic doesn't shock the frame.</figcaption>
+    </figure>
+    <figure class="photo">
+      <img src="../images/injection/pid-enclosure.jpg" width="520" height="561" loading="lazy"
+           alt="Black 3D-printed controller enclosure and its front bezel">
+      <figcaption>3D-printed enclosure for the PID controller, relay and wiring.</figcaption>
+    </figure>
+  </div>
 
   <h2>What's from Buster Beagle 3D and what's ours</h2>
   <div class="table-wrap">
@@ -126,6 +157,25 @@
       of the 30 g shot went into the mold. The final design needs about 51.7 psi of injection pressure.</li>
   </ul>
 
+  <figure style="max-width:720px">
+    <img src="../images/injection/time-temperature.png" width="900" height="556" loading="lazy"
+         alt="Plot of chamber thermocouple temperature rising from about 40 degrees C to 220 degrees C over 8 minutes, then holding flat">
+    <figcaption>Time-temperature profile: the thermocouple reaches 220&nbsp;&deg;C at about 8 minutes, and the PLA is fully
+      melted at about 10 minutes (star).</figcaption>
+  </figure>
+  <div class="figs">
+    <figure class="photo">
+      <img src="../images/injection/adjusted-molds.jpg" width="800" height="472" loading="lazy"
+           alt="Two clear resin mold halves with a circular cavity, each fitted with an aluminum sprue at the top">
+      <figcaption>Mold halves after the fix: a larger gate and a vent so trapped air can escape.</figcaption>
+    </figure>
+    <figure class="photo">
+      <img src="../images/injection/first-part.jpg" width="628" height="458" loading="lazy"
+           alt="First successful molded PLA part: a quarter-shaped disc with the coin detail visible">
+      <figcaption>The first successful part: smooth, nearly fully filled, with minimal flash.</figcaption>
+    </figure>
+  </div>
+
   <h2>Limitations</h2>
   <ul>
     <li>The mold was printed in standard clear resin, because the high-temperature resin order wasn't enough to run the
@@ -149,8 +199,6 @@
     <li>High-temperature mold material</li>
     <li>Automatic cycling</li>
   </ul>
-  <!-- TODO (Sahil): add your team's own figures from the report (final CAD, spring-mounted chamber, finished machine,
-       time-temperature plot, first successful part). Never use Buster Beagle 3D's images. -->
 </main>
 
 <footer><div class="wrap">&copy; <span id="year"></span> Sahil Aggarwal</div></footer>
