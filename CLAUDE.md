@@ -15,7 +15,8 @@ A personal engineering portfolio for Sahil Aggarwal, hosted at his own domain, h
 
 ## Intended file structure
 ```
-index.html                      home: intro, projects, skills, experience, contact
+index.html                      home: intro, highlights, skills, projects, beyond, experience SUMMARY, education, contact
+experience.html                 full experience detail + resume download (home has only a short summary; Sahil asked)
 style.css                       shared light theme styles (colors are CSS variables in :root)
 Sahil-Aggarwal-Resume.pdf       public resume (version WITHOUT phone number)
 projects/pangolin-robot.html
@@ -38,6 +39,7 @@ Project pages load the stylesheet as `../style.css` and link home as `../index.h
 ## Status
 - Project pages live in `projects/` (fixed). Contact email, LinkedIn and resume are done. No GitHub link (Sahil's choice).
 - SeaBot and the cricket bowling machine were removed: they never left design ideation. Do not re-add them.
+- Upcoming (not yet taken, Spring 2027): Applied Stress Analysis, Mechatronics, Energy Technologies Lab II. Keep them listed separately.
 - Job title is "Mechanical Engineer" (not Junior). FEA is intentionally NOT listed as a skill.
 - Skills stays ABOVE Projects on the home page (Sahil's explicit choice, overrides the upgrade guide).
 - No "looking for a role" line in the hero (Sahil removed it).
