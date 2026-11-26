@@ -70,7 +70,7 @@ section { padding: 56px 0; border-top: 1px solid var(--line); }
 section h2 { font-size: 1.6rem; margin: 0 0 24px; }
 
 /* Project cards */
-.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr)); gap: 20px; }
 .card {
   display: block; background: var(--panel); border: 1px solid var(--line);
   border-radius: 12px; padding: 22px; color: var(--text);
@@ -80,6 +80,11 @@ section h2 { font-size: 1.6rem; margin: 0 0 24px; }
 .card:hover { box-shadow: 0 8px 24px rgba(27, 36, 48, 0.08); }
 .card:hover { transform: translateY(-3px); border-color: var(--accent); text-decoration: none; }
 .card h3 { margin: 0 0 8px; font-size: 1.15rem; }
+.card-img {
+  display: block; width: calc(100% + 44px); height: auto; aspect-ratio: 16 / 9; object-fit: cover;
+  margin: -22px -22px 18px; border-radius: 12px 12px 0 0; border-bottom: 1px solid var(--line); background: #fff;
+}
+.card { overflow: hidden; }
 .card p { margin: 0 0 14px; color: var(--body); font-size: 0.95rem; }
 .tags { display: flex; flex-wrap: wrap; gap: 8px; }
 .tag {
@@ -96,6 +101,7 @@ section h2 { font-size: 1.6rem; margin: 0 0 24px; }
 .job { margin-bottom: 22px; }
 .job h3 { margin: 0; font-size: 1.05rem; }
 .job .meta { color: var(--muted); font-size: 0.9rem; }
+h3.group { font-size: 0.95rem; color: var(--accent); margin: 32px 0 14px; text-transform: uppercase; letter-spacing: 1px; }
 .job ul { margin: 8px 0 0; padding-left: 20px; color: var(--body); font-size: 0.95rem; }
 .job li { margin-bottom: 4px; }
 .job .courses { margin: 6px 0 0; color: var(--body); font-size: 0.95rem; }
@@ -133,6 +139,8 @@ figcaption { color: var(--muted); font-size: 0.88rem; margin-top: 8px; }
 .figs { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin: 24px 0; }
 .figs figure { margin: 0; }
 .hero-img { max-width: 640px; }
+.figs.tall img { aspect-ratio: 3 / 4; object-fit: cover; }
+.figs.tall figure:not(.photo) img { object-fit: contain; }
 
 /* Stat tiles */
 .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 14px; margin: 20px 0; }
@@ -166,4 +174,53 @@ footer { border-top: 1px solid var(--line); padding: 32px 0; color: var(--muted)
   nav { width: 100%; display: flex; flex-wrap: wrap; column-gap: 14px; }
   nav a { margin-left: 0; font-size: 0.85rem; }
   .hero { padding: 48px 0 48px; }
+}
+
+/* Beyond the technical work */
+.proof { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); gap: 14px; }
+.proof a {
+  display: block; background: var(--panel); border: 1px solid var(--line); border-radius: 12px;
+  padding: 16px 18px; color: var(--text); transition: border-color 0.15s ease;
+}
+.proof a:hover { border-color: var(--accent); text-decoration: none; }
+.proof b { display: block; margin-bottom: 4px; }
+.proof span { color: var(--body); font-size: 0.93rem; }
+
+/* Timeline (believed / heard / changed) */
+.timeline { list-style: none; padding: 0; margin: 18px 0; counter-reset: step; }
+.timeline li {
+  position: relative; padding: 0 0 22px 46px; border-left: 2px solid var(--line); margin-left: 15px;
+}
+.timeline li:last-child { border-left-color: transparent; padding-bottom: 0; }
+.timeline li::before {
+  counter-increment: step; content: counter(step); position: absolute; left: -16px; top: -2px;
+  width: 30px; height: 30px; border-radius: 50%; background: var(--accent); color: #fff;
+  font-weight: 700; font-size: 0.9rem; display: grid; place-items: center;
+}
+.timeline b { display: block; color: var(--text); }
+.timeline span { color: var(--body); }
+
+/* Attribution */
+.attribution {
+  border: 2px solid #c98a12; background: #fff7e6; color: #3d2a05; border-radius: 10px;
+  padding: 16px 18px; margin: 14px 0 22px; font-size: 1rem; line-height: 1.6;
+}
+.attribution a { color: #8a5a00; text-decoration: underline; }
+.tag.attrib { color: #8a5a00; background: #fff1d6; font-weight: 600; }
+
+/* Keyboard focus */
+a:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+.card:focus-visible { outline-offset: 2px; border-radius: 12px; }
+
+/* Print: clean black-on-white pages */
+@media print {
+  header.site, .cta, .back, nav, footer, .btn { display: none !important; }
+  body { background: #fff; color: #000; font-size: 11pt; }
+  .hero { padding: 0 0 16px; grid-template-columns: 1fr auto; }
+  .hero .portrait { width: 110px; height: 110px; box-shadow: none; }
+  section, .project { padding: 16px 0; }
+  .card, .stat, .facts, figure, table, .job { break-inside: avoid; box-shadow: none; }
+  .card:hover { transform: none; }
+  a { color: #000; }
+  .project a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 9pt; color: #444; }
 }
