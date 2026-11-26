@@ -139,7 +139,8 @@ figure.photo img { background: var(--panel); }
 figcaption { color: var(--muted); font-size: 0.88rem; margin-top: 8px; }
 .figs { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin: 24px 0; }
 .figs figure { margin: 0; }
-.hero-img { max-width: 640px; }
+.hero-img { max-width: 640px; margin-left: auto; margin-right: auto; }
+.hero-img figcaption { text-align: center; }
 .figs.tall img { aspect-ratio: 3 / 4; object-fit: cover; }
 .figs.tall figure:not(.photo) img { object-fit: contain; }
 
