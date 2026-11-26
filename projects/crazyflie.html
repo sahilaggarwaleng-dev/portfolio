@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Crazyflie Navigation | Sahil Aggarwal</title>
-  <meta name="description" content="Autonomous Crazyflie quadcopter navigation, obstacle avoidance and landing project (MEC 569).">
+  <meta name="description" content="Autonomous Crazyflie quadcopter mission in Python: obstacle avoidance, pad search and precision landing, then return home (MEC 569, Stony Brook).">
   <link rel="stylesheet" href="../style.css">
 </head>
 <body>
@@ -20,32 +20,125 @@
   <div class="eyebrow">Aerial robotics &middot; MEC 569</div>
   <h1>Crazyflie Autonomous Navigation</h1>
   <p class="summary">
-    A team project programming a Crazyflie quadcopter to fly an arena, avoid obstacles,
-    land on a pad and return.
+    A fully autonomous mission for a palm-sized Crazyflie quadcopter: take off, cross an arena
+    full of poles, find a landing pad it has never seen, land on its center, then fly back and
+    land on the home pad. Built in Python as a state machine driven by three onboard sensors.
   </p>
 
   <dl class="facts">
     <div><dt>Course</dt><dd>MEC 569, Stony Brook</dd></div>
-    <div><dt>Team</dt><dd>3 students</dd></div>
+    <div><dt>Team</dt><dd>Sahil Aggarwal, Isaac Lalicic, Benny Wen</dd></div>
     <div><dt>Language</dt><dd>Python</dd></div>
-    <div><dt>Platform</dt><dd>Crazyflie</dd></div>
+    <div><dt>Hardware</dt><dd>Crazyflie, Flow deck, Multi-ranger deck</dd></div>
   </dl>
+
+  <h2>Results from the successful run</h2>
+  <p>Taken from the onboard event log of the final run.</p>
+  <div class="stats">
+    <div class="stat"><b>2 / 2</b><span>Pads landed on (target and home)</span></div>
+    <div class="stat"><b>230 s</b><span>Full mission time</span></div>
+    <div class="stat"><b>4</b><span>Obstacle encounters handled</span></div>
+    <div class="stat"><b>~3 cm</b><span>Touchdown from computed pad center (onboard estimate)</span></div>
+  </div>
+  <!-- TODO (Sahil): slide 18 of the deck lists 120 s / 120 m / 5 obstacles, which does not match the
+       event log (230.2 s, 4 obstacle events). Confirm the real numbers before adding distance flown. -->
+
+  <figure>
+    <img src="../images/crazyflie/successful-run-map.png" width="1200" height="646" loading="lazy"
+         alt="Top-down map of the successful run: green path out to the landing zone with a lawnmower search, red path back to the start pad, black dots marking laser hits on obstacles and walls, plus altitude and pad-detection plots over time">
+    <figcaption>The successful run. Green: outbound leg across the obstacles and a lawnmower search of the
+      landing zone. Red: the return trip, including a short re-search when the home pad was not exactly where
+      it was entered. Black dots are multi-ranger laser hits.</figcaption>
+  </figure>
+  <p>
+    <a class="btn" href="https://drive.google.com/file/d/1LKpY5GD8rgf7vFPOjYgHOYW05ynP1DnT/view" target="_blank" rel="noopener">Watch the run replay video &rarr;</a>
+  </p>
+  <!-- TODO (Sahil): make sure the Drive video is shared as "Anyone with the link can view". -->
 
   <h2>The challenge</h2>
   <p>
-    Fly a small quadcopter through an arena, avoid obstacles, land on pads and return,
-    all autonomously from a Python control script.
+    The arena has a start pad, a field of poles, and a raised landing pad somewhere in a known search region.
+    The drone has no GPS and no camera image to work with. It must cross the obstacles, locate the pad, land on
+    it, take off again, return through the obstacles, and land back on the home pad, all without a human
+    touching the controls.
   </p>
 
+  <h2>Strategy: three sensors, three jobs</h2>
+  <div class="figs">
+    <figure>
+      <img src="../images/crazyflie/sensor-multiranger.png" width="700" height="550" loading="lazy"
+           alt="Top view diagram: drone with a laser pointing at a pole 0.45 m ahead while the left, right and back lasers read clear">
+      <figcaption><b>Multi-ranger deck.</b> Measures distance to the nearest object up to about 4 m in each
+        direction. Used to detect obstacles and steer around them.</figcaption>
+    </figure>
+    <figure>
+      <img src="../images/crazyflie/sensor-flow-camera.png" width="700" height="550" loading="lazy"
+           alt="Side view diagram: downward camera watching the patterned floor slide backward as the drone moves forward">
+      <figcaption><b>Flow deck camera.</b> Tracks how fast the floor texture moves under the drone to estimate
+        x and y position. This is why the arena floor is patterned.</figcaption>
+    </figure>
+    <figure>
+      <img src="../images/crazyflie/sensor-down-laser.png" width="700" height="550" loading="lazy"
+           alt="Side view diagram: down laser reads 0.30 m over the floor and 0.20 m over the pad, so a sudden 10 cm drop means the pad was reached">
+      <figcaption><b>Flow deck down laser.</b> Measures height to the surface below. Holds altitude, finds pad
+        edges (a sudden 10 cm drop means the drone is over the pad) and confirms touchdown.</figcaption>
+    </figure>
+  </div>
+
+  <h2>Mission state machine</h2>
+  <p>The mission is broken into phases. Each phase has one job and hands off to the next, and an ABORT
+    state can land the drone safely from any phase.</p>
+  <ol>
+    <li><b>TAKEOFF</b> from the start pad.</li>
+    <li><b>CROSS</b> the arena toward the landing region, avoiding obstacles.</li>
+    <li><b>SEARCH</b> the landing region in a lawnmower sweep until the down laser sees a pad edge.</li>
+    <li><b>CENTER</b> by measuring the pad edges left/right, then up/down, and computing the center.</li>
+    <li><b>LAND</b> on the computed center, then reset the position estimate to the known pad center.</li>
+    <li><b>TAKEOFF 2</b>, <b>RETURN</b> through the obstacles, then <b>SEARCH</b>, <b>CENTER</b> and <b>LAND</b> on the home pad.</li>
+  </ol>
+
+  <h3>Obstacle avoidance</h3>
+  <ul>
+    <li><b>Safety bubble:</b> if the front laser sees a pole within 50 cm, the drone stops and slides sideways.</li>
+    <li><b>Pass:</b> fly forward while the side laser watches the pole go by, then continue 30 cm further.</li>
+    <li><b>Extra margin:</b> slide an extra 25 cm so the body and propellers clear, not just the sensor.</li>
+    <li><b>Return to lane:</b> slide back to the planned lane only once the pole is fully behind.</li>
+  </ul>
+
+  <h3>Tooling</h3>
+  <ul>
+    <li><b>logandfly</b> flies the drone and writes a flight log (.csv) and an event log (.txt).</li>
+    <li><b>sim_room</b> runs the real mission code in a simulated room with a fake pad, poles and walls, writing
+      the same log files with no drone involved. This let us test logic changes before risking a flight.</li>
+    <li><b>map_replay</b> reads any log, real or simulated, and draws the top-down map of the path, laser hits
+      and pad detections.</li>
+  </ul>
+
+  <h2>Iterating through failed trials</h2>
+  <div class="figs">
+    <figure>
+      <img src="../images/crazyflie/trial1-map.png" width="1000" height="500" loading="lazy"
+           alt="Trial 1 map: flight path heading straight forward into the obstacle field, with altitude and pad-detection plots">
+      <figcaption><b>Trial 1.</b> The drone slid sideways only until the front laser cleared the pole, leaving
+        no room for its own body, and clipped the pole. <b>Fix:</b> the safety bubble, pass step and extra margin.</figcaption>
+    </figure>
+    <figure>
+      <img src="../images/crazyflie/trial2-map.png" width="1000" height="500" loading="lazy"
+           alt="Trial 2 map: flight path with lawnmower search loops and the pad-centering box, with altitude and pad-detection plots">
+      <figcaption><b>Trial 2.</b> Found the home pad, but the battery ran out mid-centering and it landed about
+        20 cm off. <b>Fix:</b> reset position to the measured pad center after each landing, move to the best
+        center estimate on low battery, and use a fresh battery every run.</figcaption>
+    </figure>
+  </div>
+  <p>Intermediate trials surfaced three more issues, each with a targeted fix:</p>
+  <ul>
+    <li>Looped around a pole &rarr; return to the lane only once the pole is behind.</li>
+    <li>Searched the middle of the arena &rarr; fly straight to the landing region first.</li>
+    <li>Searched backward &rarr; sweep forward to the far end first.</li>
+  </ul>
+
   <h2>My contribution</h2>
-  <p><!-- TODO: describe exactly which parts you wrote/tuned (path logic, landing, testing). --></p>
-
-  <h2>Demo</h2>
-  <!-- TODO: embed your presentation video, for example a YouTube iframe -->
-  <div class="placeholder">Embed the trial / presentation video here</div>
-
-  <h2>Results</h2>
-  <p><!-- TODO: add numbers: success rate, landing accuracy, runs completed. --></p>
+  <p><!-- TODO (Sahil): describe exactly which parts you wrote or tuned (state machine, avoidance, pad centering, simulator, map replay, testing). --></p>
 </main>
 
 <footer><div class="wrap">&copy; <span id="year"></span> Sahil Aggarwal</div></footer>

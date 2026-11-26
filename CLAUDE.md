@@ -17,25 +17,24 @@ A personal engineering portfolio for Sahil Aggarwal, hosted at his own domain, h
 ```
 index.html                      home: intro, projects, skills, experience, contact
 style.css                       shared dark theme styles
-resume.pdf                      not added yet; the "Download resume" button links to it
-projects/seabot.html
+resume.pdf                      public resume (version WITHOUT phone number)
+projects/pangolin-robot.html
 projects/crazyflie.html
-projects/cricket-bowling-machine.html
 projects/ev-conversion.html
-images/                         for CAD renders, photos, plots (create when needed)
+images/headshot.jpg             home-page portrait
+images/<project>/               compressed figures per project
 wrangler.jsonc, .assetsignore   deploy config
 ```
 Project pages load the stylesheet as `../style.css` and link home as `../index.html`. The home page links to `projects/<name>.html`.
 
-## KNOWN PROBLEM TO FIX FIRST
-The four project pages were uploaded to the repo root instead of `projects/`, so project links currently 404 and the pages lose their styling. Move them into `projects/` with `git mv`, then check every internal link (home to projects, projects back to home, stylesheet paths). Show Sahil the result before pushing.
+## Status
+- Project pages live in `projects/` (fixed). Contact email, LinkedIn and resume are done. No GitHub link (Sahil's choice).
+- SeaBot and the cricket bowling machine were removed: they never left design ideation. Do not re-add them.
+- Open question: job title on the site says "Junior Mechanical Engineer"; resume says "Mechanical Engineer".
 
 ## Content that still needs Sahil's input (leave TODO comments, never invent)
-- `index.html` Contact section: placeholder email (`you@example.com`), LinkedIn and GitHub URLs. His GitHub username is `sahilaggarwaleng-dev`. His email is sahil.aggarwal.eng@gmail.com. Ask before using it publicly.
-- `resume.pdf`: ask him to place it in the repo root.
-- Every project page has TODO placeholders for his specific role, results and numbers, and images.
-- Crazyflie page: embed the presentation video (ask for the YouTube link).
-- Cricket bowling machine page: almost entirely empty. Ask him for details.
+- Every project page has a "My contribution" TODO for his specific role.
+- Crazyflie page: deck slide 18 stats (120 s / 120 m / 5) conflict with the event log (230.2 s, 4 obstacles); confirm. Video is a Google Drive link; confirm it is shared publicly.
 - EV conversion page: check what he is allowed to share about employer work before adding details or photos.
 
 ## Facts about Sahil (safe to use in site copy)
@@ -46,9 +45,8 @@ The four project pages were uploaded to the repo root instead of `projects/`, so
 - Looking for robotics and mechatronics roles.
 
 ### Projects
-- **SeaBot**: autonomous underwater drone to trace nitrogen pollution in Long Island coastal waters (Suffolk County cesspool runoff). Four-person team, Sahil co-leads. Phase 0 design uses thrust-vectoring impeller locomotion and a live camera feed on a tethered power system. Phases are named SeaBot 0.1, 1.0 and so on.
-- **Crazyflie autonomous navigation** (MEC 569, Stony Brook): Crazyflie quadcopter navigates an arena, avoids obstacles, lands on pads and returns. Python script based on `logandfly.py`. Team of three.
-- **Automated Cricket Bowling Machine**: mechatronics and fabrication project. Details to come from Sahil.
+- **Pangolin-inspired magnetic soft robot** (MEC 520 Smart Materials and Structures, Prof. Yao, May 2026): team of four (Sahil Aggarwal, Ishaan Jain, Omar Khan, Andrew Yancovitz). Kite-shaped scale redesign of Soon et al. 2023 for multi-axis bending. Source: Group 7 design report.
+- **Crazyflie autonomous navigation** (MEC 569, Stony Brook): team Sahil Aggarwal, Isaac Lalicic, Benny Wen. Python state machine (logandfly, sim_room, map_replay). Source: presentation deck.
 - **Ford E450 and school bus EV conversions**: industry work at Unique Electric Solutions.
 
 ## Rules

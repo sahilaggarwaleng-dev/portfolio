@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pangolin-Inspired Soft Robot | Sahil Aggarwal</title>
+  <meta name="description" content="Design, fabrication and testing of a pangolin-inspired untethered magnetic soft robot with redesigned kite-shaped aluminum scales for multi-axis bending (MEC 520, Stony Brook).">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="../index.html">Sahil Aggarwal</a>
+    <nav><a href="../index.html#projects">Projects</a><a href="../index.html#contact">Contact</a></nav>
+  </div>
+</header>
+
+<main class="wrap project">
+  <a class="back" href="../index.html#projects">&larr; All projects</a>
+  <div class="eyebrow">Soft robotics &middot; MEC 520 Smart Materials and Structures</div>
+  <h1>Pangolin-Inspired Magnetic Soft Robot for Hemostasis</h1>
+  <p class="summary">
+    An untethered soft robot, steered by external magnets, meant to travel through the small intestine and
+    stop bleeding by heating tissue. We redesigned its aluminum scales from rectangles to a kite shape like a
+    real pangolin's, so it can bend in more than one direction, then built and tested a working magnetic prototype.
+  </p>
+
+  <figure class="photo hero-img">
+    <img src="../images/pangolin/final-prototype.jpg" width="660" height="493"
+         alt="Finished prototype: a dark grey flexible silicone strip covered in rows of overlapping kite-shaped aluminum scales">
+    <figcaption>Final prototype: NdFeB-filled Ecoflex 00-30 body (75 &times; 25 &times; 2 mm) with kite-shaped 5052 aluminum scales.</figcaption>
+  </figure>
+
+  <dl class="facts">
+    <div><dt>Course</dt><dd>MEC 520, Stony Brook (Prof. Yao)</dd></div>
+    <div><dt>Team</dt><dd>4 students: Sahil Aggarwal, Ishaan Jain, Omar Khan, Andrew Yancovitz</dd></div>
+    <div><dt>Completed</dt><dd>May 2026</dd></div>
+    <div><dt>Tools</dt><dd>CAD, CNC machining, 3D printing, MATLAB</dd></div>
+  </dl>
+
+  <h2>Results at a glance</h2>
+  <div class="stats">
+    <div class="stat"><b>2</b><span>Prototype iterations built</span></div>
+    <div class="stat"><b>11 mm</b><span>Distance at which the robot was pulled to the magnet</span></div>
+    <div class="stat"><b>1 week</b><span>Underwater soak with no scale loss</span></div>
+    <div class="stat"><b>$53.98</b><span>Material cost of the final prototype</span></div>
+  </div>
+
+  <h2>The problem</h2>
+  <p>
+    Untethered magnetic robots are driven by magnetic fields from outside the body, with no battery or wire,
+    which makes them promising for minimally invasive surgery. Soon et al. (Max Planck Institute, 2023) built a
+    pangolin-inspired robot: a magnetic silicone body covered in overlapping aluminum scales that heat up under
+    a radio-frequency field, so it can cauterize tissue on demand.
+  </p>
+  <p>
+    Their rectangular scales lock against each other along their straight edges, so the robot can only curl
+    about one axis. The small intestine is long and lined with dense circular folds, so a robot that only bends
+    in one plane struggles to reach a bleeding site. Our goal was a scale design that allows multi-axis bending.
+  </p>
+
+  <h2>Requirements</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Requirement</th><th>Target</th><th>Prototype scope</th></tr></thead>
+      <tbody>
+        <tr><td>Size</td><td>About 20 &times; 10 &times; 0.2 mm, to fit a "0" gelatin capsule for oral delivery</td><td>Built larger for student fabrication</td></tr>
+        <tr><td>Locomotion</td><td>Driven by an external magnetic field through fluid-filled environments</td><td>Magnetic response tested</td></tr>
+        <tr><td>Heating</td><td>Joule heating in the overlapping aluminum scales</td><td>Simulated, not built</td></tr>
+        <tr><td>Multi-environment</td><td>Keep working across environments</td><td>Tested in air and water</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Scale redesign</h2>
+  <figure>
+    <img src="../images/pangolin/scale-drawing.png" width="1000" height="633" loading="lazy"
+         alt="Engineering drawing of the large and small kite-shaped scales with dimensions">
+    <figcaption>Kite-shaped scales. Small scale: 4.51 &times; 6.97 mm. Large scale: 10.00 &times; 14.51 mm.
+      Both 0.5 mm thick with R0.50 mm corner radii.</figcaption>
+  </figure>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Criterion</th><th>Rectangular (Soon et al.)</th><th>Kite (our design)</th></tr></thead>
+      <tbody>
+        <tr><td>Bending freedom</td><td>Single axis, longitudinal curl only</td><td>Longitudinal and transverse: angled edges let scale corners rotate past each other</td></tr>
+        <tr><td>Edge contact</td><td>Full-length line contact resists lateral bending</td><td>Point contact at the corners only</td></tr>
+        <tr><td>Bond stress</td><td>Sharp 90&deg; corners</td><td>R0.50 mm fillets reduce stress at the scale-to-silicone bond</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Materials</h2>
+  <ul>
+    <li><b>Body: Ecoflex silicone.</b> Softer than the original PDMS, so the enlarged prototype bends under
+      practical fields. Started with 00-10, then moved to 00-30 for the strength to hold the scales.</li>
+    <li><b>Magnetic filler: NdFeB microparticles.</b> A hard magnetic material that keeps a programmed
+      magnetization profile, enabling shape-morphing under a rotating field.</li>
+    <li><b>Scales: 5052 aluminum, 0.5 mm.</b> Highly conductive for RF heating and non-ferromagnetic, so it
+      doesn't interfere with actuation. Thicker than the original 100 &micro;m so it could be CNC machined.</li>
+    <li><b>Molds: PETG.</b> Chosen over PLA because its glass transition (~80&ndash;85&nbsp;&deg;C) stays above
+      the oven cure temperature, so the mold doesn't warp.</li>
+  </ul>
+
+  <h2>Design and analysis</h2>
+  <figure>
+    <img src="../images/pangolin/assembly-drawing.png" width="1200" height="770" loading="lazy"
+         alt="Assembly drawing showing the scale, the PDMS and magnetic body layer, and the assembled structure with staggered scale rows">
+    <figcaption>Assembly concept: staggered rows of scales on the magnetic silicone body.</figcaption>
+  </figure>
+  <p>
+    Before building, we checked analytically, with MATLAB, that the small-scale prototype could be magnetized,
+    would bend, and could be steered:
+  </p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Parameter</th><th>Value</th></tr></thead>
+      <tbody>
+        <tr><td>NdFeB particle mass (10% by volume)</td><td>2.85 g</td></tr>
+        <tr><td>Minimum programming field / full saturation field</td><td>0.729 T / 2.01 T</td></tr>
+        <tr><td>Robot magnetic moment</td><td>0.276 A&middot;m&sup2;</td></tr>
+        <tr><td>Flexural rigidity, Ecoflex 00-30 body</td><td>1.15 &times; 10<sup>&minus;6</sup> N&middot;m&sup2;</td></tr>
+        <tr><td>Minimum field for visible bending (10 mm tip deflection)</td><td>0.015 mT</td></tr>
+        <tr><td>Actuation torque at 20 / 30 / 50 mm</td><td>27.2 / 8.1 / 1.7 mN&middot;m</td></tr>
+        <tr><td>Maximum steering range (force &gt; robot weight)</td><td>58 mm</td></tr>
+        <tr><td>Minimum bending radius</td><td>8.0 mm</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <figure>
+    <img src="../images/pangolin/field-vs-distance.png" width="603" height="452" loading="lazy" style="max-width:603px"
+         alt="Plot of applied magnetic field versus distance for three magnet sizes, all far above the actuation threshold">
+    <figcaption>Applied field vs. distance for three candidate magnets. All stay orders of magnitude above the
+      bending threshold, so magnet choice isn't a limiting constraint.</figcaption>
+  </figure>
+
+  <h2>Fabrication</h2>
+  <div class="figs">
+    <figure class="photo">
+      <img src="../images/pangolin/cnc-scales.jpg" width="572" height="972" loading="lazy"
+           alt="Sheet of CNC-machined kite-shaped aluminum scales">
+      <figcaption>CNC-machined aluminum scales.</figcaption>
+    </figure>
+    <figure class="photo">
+      <img src="../images/pangolin/mold.jpg" width="900" height="553" loading="lazy"
+           alt="3D printed PETG mold for casting the silicone body">
+      <figcaption>3D-printed PETG mold. Matching jigs set the scale pattern.</figcaption>
+    </figure>
+    <figure class="photo">
+      <img src="../images/pangolin/pouring.jpg" width="700" height="933" loading="lazy"
+           alt="Gloved hand pouring the dark silicone and NdFeB mixture into a mold">
+      <figcaption>Pouring the Ecoflex and NdFeB mixture for the second prototype.</figcaption>
+    </figure>
+  </div>
+
+  <h3>Prototype 1: learning what breaks</h3>
+  <p>A large-scale (about 150 &times; 50 mm) proof of concept, with one body holding scales and one holding
+    discrete magnets. The scales bonded well, but the silicone stuck to the PETG mold and tore during
+    demolding, and the one-hour cure was not long enough.</p>
+
+  <h3>Fixing the cure time with heat transfer</h3>
+  <p>
+    Rather than guess, we back-calculated the activation energy of the silicone cure from two data points
+    (4 hours at 23&nbsp;&deg;C and 25 minutes at 70&nbsp;&deg;C), giving <i>E<sub>a</sub></i> &asymp; 40.6 kJ/mol.
+    Arrhenius kinetics put the cure at about 39 minutes at 60&nbsp;&deg;C. A Biot number of 1.23 showed the
+    thick PETG walls add real thermal lag, about 39 minutes of conduction time. The total of about 78 minutes,
+    rounded to 90, explained the failure and worked on the next build.
+  </p>
+
+  <h3>Prototype 2: working magnetic robot</h3>
+  <p>Scaled down to a 75 &times; 25 &times; 2 mm body in Ecoflex 00-30 with NdFeB particles, mold release
+    applied, and cured for 90 minutes at 60&nbsp;&deg;C. It demolded cleanly with about 47 scales in place.</p>
+  <figure class="photo">
+    <img src="../images/pangolin/second-prototype.jpg" width="1200" height="900" loading="lazy"
+         alt="Second prototype lying flat: black magnetic silicone body with rows of kite-shaped aluminum scales">
+    <figcaption>The finished second prototype.</figcaption>
+  </figure>
+
+  <h2>Testing</h2>
+  <ul>
+    <li><b>Magnetic response:</b> with a small 95 lb pull magnet, the robot held its own weight by magnetism
+      alone, and was pulled to the magnet from 11 mm away while hanging. This shows the particle loading is
+      enough for locomotion.</li>
+    <li><b>Durability:</b> after a week submerged in water, the robot was strained in-plane and bent to mimic
+      actuation. No scales came loose, and it still responded magnetically.</li>
+  </ul>
+
+  <h2>Heating trade-off analysis</h2>
+  <p>
+    The RF heating hardware was out of scope, so we modeled it from the original paper's data. The kite shape
+    has half the area of a rectangle with the same outer dimensions, so it covers 41.1% of the body with
+    conductive material versus 82.1%. At 50% overlap and the target 100 &micro;m thickness, the predicted
+    rise is about 18&nbsp;&deg;C per scale versus about 36&nbsp;&deg;C for rectangles. That is a fixed
+    factor-of-two penalty, which we accepted in exchange for multi-axis bending.
+  </p>
+  <div class="figs">
+    <figure>
+      <img src="../images/pangolin/coverage-comparison.png" width="787" height="410" loading="lazy"
+           alt="Bar charts comparing kite and rectangular scale geometry, single-scale area and total body coverage">
+      <figcaption>Kite vs. rectangular scale area and total body coverage.</figcaption>
+    </figure>
+    <figure>
+      <img src="../images/pangolin/dT-vs-thickness.png" width="596" height="415" loading="lazy"
+           alt="Plot of predicted temperature rise versus aluminum thickness for kite and rectangular scales, falling to near zero by 500 micrometers">
+      <figcaption>Predicted temperature rise vs. scale thickness. At 500 &micro;m both designs are near zero,
+        so thinner aluminum is the biggest lever.</figcaption>
+    </figure>
+  </div>
+
+  <h2>Limitations and next steps</h2>
+  <ul>
+    <li>The robot was not magnetically programmed (poled), since the required field of about 2 T wasn't
+      available. We designed a curved poling mold to give it a varying magnetization for rolling locomotion.</li>
+    <li>RF heating and full locomotion were not demonstrated. The prototype is a mechanical and magnetic
+      proof of concept.</li>
+    <li>To recover heating: switch to 100 &micro;m aluminum, increase scale overlap, and consider insulating
+      layers or other scale materials.</li>
+  </ul>
+
+  <h2>My contribution</h2>
+  <p><!-- TODO (Sahil): describe your part (e.g. scale redesign, CAD, calculations, cure-time analysis, fabrication, testing, report). --></p>
+
+  <p class="note">Built on: R.H. Soon et al., "Pangolin-inspired untethered magnetic robot for on-demand
+    biomedical heating applications," <i>Nature Communications</i> 14, 3320 (2023).
+    <a href="https://doi.org/10.1038/s41467-023-38689-x" target="_blank" rel="noopener">doi:10.1038/s41467-023-38689-x</a></p>
+</main>
+
+<footer><div class="wrap">&copy; <span id="year"></span> Sahil Aggarwal</div></footer>
+<script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</body>
+</html>
