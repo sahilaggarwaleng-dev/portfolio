@@ -16,7 +16,7 @@ A personal engineering portfolio for Sahil Aggarwal, hosted at his own domain, h
 ## Intended file structure
 ```
 index.html                      home: intro, highlights, skills, projects, beyond, experience SUMMARY, education, contact
-experience.html                 full experience detail + resume download (home has only a short summary; Sahil asked)
+experience.html                 full experience detail + resume download (home has only a short summary; Sahil asked). Each role is a card with its company logo (images/logos/) and a small SVG icon per theme sub-label
 style.css                       shared light theme styles (colors are CSS variables in :root)
 Sahil-Aggarwal-Resume.pdf       public resume (version WITHOUT phone number)
 projects/pangolin-robot.html
