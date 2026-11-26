@@ -16,7 +16,7 @@ A personal engineering portfolio for Sahil Aggarwal, hosted at his own domain, h
 ## Intended file structure
 ```
 index.html                      home: intro, projects, skills, experience, contact
-style.css                       shared dark theme styles
+style.css                       shared light theme styles (colors are CSS variables in :root)
 resume.pdf                      public resume (version WITHOUT phone number)
 projects/pangolin-robot.html
 projects/crazyflie.html
@@ -54,7 +54,7 @@ Project pages load the stylesheet as `../style.css` and link home as `../index.h
 ## Rules
 1. Never invent results, metrics, dates, employers or claims. If a detail is missing, leave a visible TODO and ask Sahil.
 2. Keep it plain HTML and CSS. No frameworks, build tools or dependencies.
-3. Keep the design clean, dark, responsive and fast. Compress images. Use descriptive `alt` text.
+3. Keep the design clean, bright, warm, responsive and fast. Light theme chosen by Sahil (was dark). Compress images. Use descriptive `alt` text.
 4. Before every commit, check that all internal links and image paths resolve.
 5. Show Sahil a summary of the changes and ask before pushing. A push goes live on his public site.
 6. Commit messages should be short and descriptive.
