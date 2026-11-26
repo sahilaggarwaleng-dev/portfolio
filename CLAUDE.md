@@ -30,18 +30,20 @@ Project pages load the stylesheet as `../style.css` and link home as `../index.h
 ## Status
 - Project pages live in `projects/` (fixed). Contact email, LinkedIn and resume are done. No GitHub link (Sahil's choice).
 - SeaBot and the cricket bowling machine were removed: they never left design ideation. Do not re-add them.
-- Open question: job title on the site says "Junior Mechanical Engineer"; resume says "Mechanical Engineer".
+- Job title is "Mechanical Engineer" (not Junior). FEA is intentionally NOT listed as a skill.
+- Crazyflie stats use the event log numbers (230 s, 4 obstacles, 2/2 pads); Sahil confirmed, keep them.
 
 ## Content that still needs Sahil's input (leave TODO comments, never invent)
 - Every project page has a "My contribution" TODO for his specific role.
-- Crazyflie page: deck slide 18 stats (120 s / 120 m / 5) conflict with the event log (230.2 s, 4 obstacles); confirm. Video is a Google Drive link; confirm it is shared publicly.
+- Crazyflie page: video is a Google Drive link; confirm it is shared publicly.
 - EV conversion page: check what he is allowed to share about employer work before adding details or photos.
 
 ## Facts about Sahil (safe to use in site copy)
 - Mechanical engineering graduate student at Stony Brook University, expected 2027. Based in Hicksville, Long Island, NY.
-- Junior Mechanical Engineer at Unique Technical Services since February 2026.
+- Mechanical Engineer at Unique Technical Services since February 2026.
 - Senior Intern at Unique Electric Solutions, January 2024 to January 2026, on Ford E450 and school bus EV conversion projects.
-- Skills: SolidWorks (CAD), FEA, MATLAB, Python, mechatronics, fabrication, control systems.
+- Skills: see resume.pdf; SolidWorks, Fusion 360, Altium, MATLAB, Python, fabrication, control systems. No FEA.
+- Resume (resume.pdf) is the source of truth for experience bullets, including LIHTI and Energy Terminal.
 - Looking for robotics and mechatronics roles.
 
 ### Projects
