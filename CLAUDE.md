@@ -19,6 +19,7 @@ index.html                      home: intro, projects, skills, experience, conta
 style.css                       shared light theme styles (colors are CSS variables in :root)
 resume.pdf                      public resume (version WITHOUT phone number)
 projects/pangolin-robot.html
+projects/f16-flight-control.html
 projects/crazyflie.html
 projects/ev-conversion.html
 images/headshot.jpg             home-page portrait
@@ -48,6 +49,7 @@ Project pages load the stylesheet as `../style.css` and link home as `../index.h
 
 ### Projects
 - **Pangolin-inspired magnetic soft robot** (MEC 520 Smart Materials and Structures, Prof. Yao, May 2026): team of four (Sahil Aggarwal, Ishaan Jain, Omar Khan, Andrew Yancovitz). Kite-shaped scale redesign of Soon et al. 2023 for multi-axis bending. Source: Group 7 design report.
+- **F-16 longitudinal flight control** (MEC 560 Advanced Control Systems, Prof. Amin Fakhari, May 2026): individual project. Source: final report PDF (MEC560FinalProject). Numbers on the page are verified against the final report: tracking error 0.3702 deg, robustness 4/28 eigen-stable and 2/28 sim-stable, saturated final theta 9.0567 deg, FL 2.89 deg vs LQR 16.44 deg peak.
 - **Crazyflie autonomous navigation** (MEC 569, Stony Brook): team Sahil Aggarwal, Isaac Lalicic, Benny Wen. Python state machine (logandfly, sim_room, map_replay). Source: presentation deck.
 - **Ford E450 and school bus EV conversions**: industry work at Unique Electric Solutions.
 

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>F-16 Flight Control | Sahil Aggarwal</title>
+  <meta name="description" content="State-space control design for an unstable linearized F-16 pitch model in Python: LQR, full- and reduced-order observers, feedforward tracking, feedback linearization, saturation and gust tests, and Monte Carlo robustness (MEC 560, Stony Brook).">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="../index.html">Sahil Aggarwal<span class="cred">, EIT</span></a>
+    <nav><a href="../index.html#projects">Projects</a><a href="../index.html#contact">Contact</a></nav>
+  </div>
+</header>
+
+<main class="wrap project">
+  <a class="back" href="../index.html#projects">&larr; All projects</a>
+  <div class="eyebrow">Controls &middot; MEC 560 Advanced Control Systems</div>
+  <h1>F-16 Longitudinal Flight Control</h1>
+  <p class="summary">
+    A complete control design for an unstable, linearized F-16 pitch model, built in Python. It stabilizes
+    the aircraft, estimates the states it can't measure, tracks a commanded pitch trajectory, and then
+    stress-tests the design with actuator limits, a wind gust, and uncertain aerodynamics.
+  </p>
+
+  <dl class="facts">
+    <div><dt>Course</dt><dd>MEC 560, Stony Brook (Prof. Amin Fakhari)</dd></div>
+    <div><dt>Type</dt><dd>Individual project</dd></div>
+    <div><dt>Completed</dt><dd>May 2026</dd></div>
+    <div><dt>Tools</dt><dd>Python, NumPy, SciPy, python-control, SymPy, Matplotlib, Jupyter</dd></div>
+  </dl>
+
+  <h2>Results at a glance</h2>
+  <div class="stats">
+    <div class="stat"><b>+0.117 &rarr; stable</b><span>Unstable open-loop pole stabilized by LQR</span></div>
+    <div class="stat"><b>0.37&deg;</b><span>Max error tracking a &plusmn;2.9&deg; sinusoidal pitch command</span></div>
+    <div class="stat"><b>0</b><span>Steady-state error on pitch step commands</span></div>
+    <div class="stat"><b>4 / 28</b><span>Monte Carlo trials stable under &plusmn;20% uncertainty (the main weakness)</span></div>
+  </div>
+
+  <h2>The challenge</h2>
+  <p>
+    The project called for an unstable dynamic system with at least four states and a full control pipeline:
+    state feedback, observers, tracking, and robustness analysis. I chose the F-16's longitudinal (pitch-plane)
+    dynamics, with four states: angle of attack <i>&alpha;</i>, pitch rate <i>q</i>, pitch angle <i>&theta;</i>,
+    and elevator deflection <i>&delta;<sub>e</sub></i>. Only <i>&alpha;</i> and <i>&theta;</i> are measured.
+  </p>
+  <p>
+    The model is linearized about straight-and-level trim at 10,000 ft and Mach 0.5, using Stevens &amp; Lewis
+    parameters. The published linearization was open-loop stable, so I increased the pitch stiffness
+    <i>M<sub>&alpha;</sub></i> from 0.8225 to 1.50 to represent a relaxed-static-stability (aft center of gravity)
+    configuration. That gives an unstable short-period pole at +0.1174.
+  </p>
+  <p class="note">This instability is a deliberate modeling choice, not published F-16 data.</p>
+
+  <h2>What I designed</h2>
+  <ol>
+    <li><b>Open-loop analysis:</b> eigenvalues, BIBO stability, controllability and observability (both full
+      rank) and minimality.</li>
+    <li><b>LQR state feedback:</b> weights that penalize pitch angle most, moving every closed-loop pole into the
+      left half-plane (slowest at &minus;0.61 &plusmn; 0.47j).</li>
+    <li><b>Reference tracking:</b> an input gain for zero steady-state error on pitch steps, plus a
+      feedforward-and-feedback law, <i>u</i> = &minus;<i>K</i>(<i>x</i> &minus; <i>x<sub>d</sub></i>), for a
+      sinusoidal pitch command. The desired angle of attack comes from the pitch-acceleration equation.</li>
+    <li><b>Observers:</b> a full-order Luenberger observer, plus a reduced-order observer that estimates only
+      <i>q</i> and <i>&delta;<sub>e</sub></i>. I confirmed the separation principle numerically on the 8-state
+      augmented system.</li>
+    <li><b>Feedback linearization:</b> input-output linearization with relative degree 3, reducing pitch to a
+      triple integrator, as a comparison to LQR.</li>
+    <li><b>Stress tests:</b> four initial conditions, a 28-trial Monte Carlo sweep with &plusmn;20% error in
+      <i>Z<sub>&alpha;</sub></i>, <i>M<sub>&alpha;</sub></i> and <i>M<sub>q</sub></i>, and elevator saturation at
+      &plusmn;25&deg; combined with a wind gust.</li>
+  </ol>
+
+  <h2>Tracking</h2>
+  <div class="figs">
+    <figure>
+      <img src="../images/f16/step-tracking.png" width="989" height="490" loading="lazy"
+           alt="Pitch angle step response rising smoothly to the 2.9 degree reference with no steady-state error">
+      <figcaption>Step command: the input gain gives exactly unity steady-state gain.</figcaption>
+    </figure>
+    <figure>
+      <img src="../images/f16/sinusoid-tracking.png" width="990" height="390" loading="lazy"
+           alt="Actual pitch angle closely following a sinusoidal pitch reference over 20 seconds">
+      <figcaption>Sinusoidal command (0.05 rad, 0.5 rad/s): max tracking error 0.37&deg; after the initial transient.</figcaption>
+    </figure>
+  </div>
+
+  <h2>Observer-based control</h2>
+  <figure>
+    <img src="../images/f16/observer-estimates.png" width="1189" height="712" loading="lazy"
+         alt="Four plots of true versus estimated states for alpha, pitch rate, pitch angle and elevator, with estimates converging to the true states within about two seconds">
+    <figcaption>True vs. estimated states with the observer starting at zero. Estimates lock on within about 2 s.</figcaption>
+  </figure>
+  <figure>
+    <img src="../images/f16/fl-vs-lqr.png" width="989" height="390" loading="lazy"
+         alt="Pitch angle response comparing LQR with observer, which peaks near 16 degrees, against feedback linearization, which stays under 3 degrees">
+    <figcaption>Feedback linearization vs. LQR + observer from the same start. FL peaks at 2.89&deg; and settles in
+      9.7 s; LQR + observer peaks at 16.44&deg; and settles in 12.0 s, because it acts on the observer's early
+      wrong estimates. FL's catch: it assumes full state knowledge and exact model parameters.</figcaption>
+  </figure>
+
+  <h2>Stress tests</h2>
+  <h3>Initial conditions</h3>
+  <p>From 1&deg;, 3&deg; and 5&deg; perturbations, every case returned to trim, with steady-state error under
+    0.001&deg; and settling in about 10.4 s. An asymmetric start with nonzero pitch rate produced a large linear-model
+    transient: the observer starts at zero, so the controller briefly acts on a wrong estimate while the unstable
+    mode grows, before recovering.</p>
+  <figure>
+    <img src="../images/f16/initial-conditions.png" width="1189" height="813" loading="lazy"
+         alt="Four pitch angle responses for small, medium, large and asymmetric initial conditions, all returning to zero">
+    <figcaption>Observer-based closed loop from four initial conditions.</figcaption>
+  </figure>
+
+  <h3>Actuator saturation and wind gust</h3>
+  <p>
+    A 0.1 rad (5.7&deg;) Gaussian gust on angle of attack hit at 5 s. With no elevator limit, the linear
+    controller demanded unrealistic elevator commands and pitch swung to about &minus;400&deg; before recovering.
+    With the realistic &plusmn;25&deg; limit, the swing stayed small, but saturation was active 90.9% of the time
+    and pitch settled 9.06&deg; off trim. That is bounded, not a success; it calls for anti-windup or MPC.
+  </p>
+  <figure>
+    <img src="../images/f16/saturation-gust.png" width="1089" height="1015" loading="lazy"
+         alt="Three stacked plots of pitch angle, angle of attack with the gust, and elevator command, comparing the unsaturated and saturated cases">
+    <figcaption>Pitch, angle of attack and elevator command, with and without the &plusmn;25&deg; elevator limit.</figcaption>
+  </figure>
+
+  <h3>Robustness</h3>
+  <p>
+    Under &plusmn;20% random error in three aerodynamic derivatives, only 4 of 28 trials (14%) were stable by
+    eigenvalues of the full perturbed 8-state system, and 2 of 28 (7%) settled in a 40 s simulation. With
+    <i>M<sub>&alpha;</sub></i> already at the destabilized 1.50, a +20% error pushes the short-period pole back
+    into the right half-plane. Plant error also breaks the separation principle, so controller and observer no
+    longer act independently.
+  </p>
+
+  <h2>Limitations and next steps</h2>
+  <ul>
+    <li><b>Not robust:</b> the nominal design fails under realistic parameter error. Next steps are H&infin;
+      synthesis or gain scheduling across the flight envelope.</li>
+    <li><b>Large observer gains:</b> the reduced-order observer has gain entries around 8,700, caused by a
+      structural zero and the gap between actuator and airframe timescales. That would amplify sensor noise on
+      real hardware, which motivates a Kalman filter.</li>
+    <li><b>Model fidelity:</b> a linear, longitudinal-only model at one trim point, with a first-order actuator
+      (no rate limits) and a deterministic gust rather than Dryden turbulence.</li>
+    <li><b>Saturation:</b> needs anti-windup or constraint-aware control, such as MPC.</li>
+  </ul>
+
+  <h2>What I learned</h2>
+  <ul>
+    <li>Numbers and conclusions have to match. The biggest failure mode across my drafts was text that
+      contradicted the simulation output.</li>
+    <li>A single snapshot can misclassify a slow but stable trajectory. Robustness checks need long simulation
+      windows and more than one criterion.</li>
+    <li>Place observer poles relative to the slowest dominant controller pole, with the actuator dynamics in mind.
+      Scaling from the fastest pole gave impractically large gains.</li>
+    <li>Notebook state is a trap: a second definition of <i>A</i> further down silently overwrote my corrected
+      unstable matrix.</li>
+    <li>Using both <i>u<sub>d</sub></i> = <i>K x<sub>d</sub></i> and &minus;<i>K</i>(<i>x</i> &minus;
+      <i>x<sub>d</sub></i>) double-counts the desired state and doubled the overshoot until I fixed it.</li>
+  </ul>
+
+  <p class="note">References: Stevens, Lewis &amp; Johnson, <i>Aircraft Control and Simulation</i>, 3rd ed. (2015);
+    Nguyen et al., NASA TP-1538 (1979); AeroBenchVVPython; Hespanha, <i>Linear Systems Theory</i>, 2nd ed. (2018).</p>
+</main>
+
+<footer><div class="wrap">&copy; <span id="year"></span> Sahil Aggarwal</div></footer>
+<script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</body>
+</html>
