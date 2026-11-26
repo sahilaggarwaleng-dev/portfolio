@@ -54,7 +54,7 @@ Project pages load the stylesheet as `../style.css` and link home as `../index.h
 - Mechanical Engineer at Unique Technical Services since February 2026.
 - Senior Intern at Unique Electric Solutions, January 2024 to January 2026, on Ford E450 and school bus EV conversion projects.
 - Skills: see resume.pdf; SolidWorks, Fusion 360, Altium, MATLAB, Python, fabrication, control systems. No FEA.
-- Resume (resume.pdf) is the source of truth for experience bullets, including LIHTI and Energy Terminal.
+- Experience bullets: Sahil supplied a detailed list (Nov 2026) that supersedes the resume where they differ (10+ builds, not 15+). Client/program names (e.g. the truck program, the sourcing partner) are kept generic on the site. Dropped as minor: tool evaluation, shop-floor organization, machine cleaning.
 - Looking for robotics and mechatronics roles.
 
 ### Projects
